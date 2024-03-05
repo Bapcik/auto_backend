@@ -1,5 +1,5 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsEnum, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsString, Min, ValidateIf } from 'class-validator';
 import { EЕngineType } from '../enum/EЕngineType';
 import getEnumValues from '../helpers/getEnumValues';
 import { ETransmission } from '../enum/ETransmission';
@@ -28,8 +28,7 @@ export class AutoDto {
   id!: number;
 
   @Expose()
-  @IsNotEmpty({ message: messages.isNotEmpty })
-  @IsString({ message: messages.isString })
+  @ValidateIf((object, value) => value !== undefined)
   image!: string;
 
   @Expose()

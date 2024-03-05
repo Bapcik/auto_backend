@@ -29,4 +29,8 @@ export class AuthService {
 
     return await this.repository.generateNewTokens(user);
   };
+
+  getUserByToken = async (accessToken: string) => {
+    return await this.repository.getUserByToken(accessToken)
+  }
 }

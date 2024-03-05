@@ -28,4 +28,8 @@ export class UsersRepository extends Repository<User> {
   findUserById = async (id: number): Promise<User | null> => {
     return await this.findOne({ where: { id }});
   };
+
+  getUserByToken = async (accessToken: string): Promise<User | null> => {
+    return await this.findOne({ where: { accessToken }});
+  };
 }

@@ -1,9 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { EЕngineType } from '../enum/EЕngineType';
 import { ETransmission } from '../enum/ETransmission';
+import { IAuto } from '../interfaces/IAuto.interface';
 
 @Entity()
-export class Auto {
+export class Auto implements IAuto {
   @PrimaryGeneratedColumn()
   id: number;
 
