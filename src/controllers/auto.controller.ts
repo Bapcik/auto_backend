@@ -6,6 +6,7 @@ import { AutoService } from '../services/auto.service';
 import { AuthService } from '../services/auth.service';
 import FileManager from '../helpers/fileManager';
 import config from '../config';
+import validateNumber from '../helpers/validateNumber';
 
 export class AutoController {
   private service: AutoService;
@@ -51,11 +52,24 @@ export class AutoController {
 
   getAllAuto : RequestHandler = async (req, res, next) => {
     try {
-   
-      res.send(newAuto);
+      const automobiles = await this.service.getAllAutomobiles()
+      res.send(automobiles);
     } catch (e) {
       next(e);
     }
   }
 
+
+  getAutoById: RequestHandler = async (req, res, next) => {
+    try {
+      const id = validateNumber(req.params.id);
+      if (!id) throw ApiError.BadRequest('Не верно указан id');
+
+      const auto = await this.service.getOneAuto(id)
+      if (!auto) throw ApiError.NotFound('Такого авто нет!');
+      res.send(auto);
+    } catch (e) {
+      next(e);
+    }
+  }
 }

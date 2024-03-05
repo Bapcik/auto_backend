@@ -5,6 +5,8 @@ import { User } from '../entities/user.entity';
 import UserSeeder from '../db/seeds/user.seed';
 import { UserFactory } from '../db/factories/user.factory';
 import { Auto } from '../entities/auto.entity';
+import AutoSeeder from '../db/seeds/auto.seed';
+import { AutoFactory } from '../db/factories/auto.factory';
 
 const options: DataSourceOptions & SeederOptions = {
   type: 'mysql',
@@ -16,8 +18,8 @@ const options: DataSourceOptions & SeederOptions = {
   synchronize: true,
   logging: true,
   entities: [User, Auto],
-  seeds: [UserSeeder],
-  factories: [UserFactory],
+  seeds: [UserSeeder, AutoSeeder],
+  factories: [UserFactory, AutoFactory],
 };
 
 export const appDataSource = new DataSource(options);

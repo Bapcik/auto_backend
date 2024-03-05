@@ -16,6 +16,6 @@ export class AutoRouter implements IRoute {
   private init() {
     this.router.post("/",  upload.single('image'), this.controller.createAuto)
     this.router.get("/", this.controller.getAllAuto)
-    // this.router.get("/:id", this.controller.getAutoById)
+    this.router.get("/:id", this.controller.getAutoById)
   }
 }
